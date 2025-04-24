@@ -1,0 +1,146 @@
+.modal{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(245, 245, 245, 0.4);
+    transition: 1s linear all;
+}
+
+.modal-container {
+    max-height: 80vh;
+    max-width: 30rem;
+    width: 100%;
+    background-color: #fefefe;
+    border-radius: 6px;
+    padding: 20px;
+    overflow: auto;
+    color: #000;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    border:1px solid #7AE2CF;
+}
+
+.modal-header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.modal-header h3{
+    font-size: 25px;
+    font-weight: 400;
+}
+
+button.close {
+    position: relative;
+    top: 0;
+    right: 0;
+    width: 30px;
+    font-size: 20px;
+    color: #c0c5cb;
+    background-color: transparent;
+    border: none;
+
+}
+
+.title-modal {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 16px;
+    border:1px solid #7AE2CF;
+}
+
+.title-modal:focus, .description-modal:focus {
+    outline: none;
+    border: 1px solid #7AE2CF;
+}
+
+.select-modal{
+    margin: 0.1rem;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 16px;
+    border:1px solid #7AE2CF;
+    background-color: #97e8d9;
+    color: white;
+    text-shadow: 1px 1px 1px #6dd7c4;
+    cursor: pointer;
+}
+.select-modal:focus, .users:focus {
+    outline: none;
+}
+.priority-modal>option{
+    background-color: white;
+    color: #3c3e41;
+}
+
+select{
+    width: 10rem;
+}
+.status-modal{
+    background-color: white;
+    color: #579186;
+    text-shadow: none;
+}
+
+.description-modal {
+    width: 100%;
+    min-height: 100px;
+    margin-top: 8px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    resize: vertical;
+    border:1px solid #7AE2CF;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 14px;
+    font-weight: 500;
+    width: 100%;
+}
+.modal-body{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.save-button {
+    padding: 7px 16px;
+    font-size: 16px;
+    font-weight: 600;
+    background-color:white;
+    color: #7AE2CF;
+    border: 1px solid #7AE2CF;
+    border-radius: 6px;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: background-color 0.2s;
+}
+
+.save-button:hover {
+    background-color: #7AE2CF;
+    color: white;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 12px;
+}
