@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+*{
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #eef2f9;
+    font-family: "Quicksand", sans-serif;
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+.header{
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    background: linear-gradient(0deg, #ff28a3, #ff923e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
