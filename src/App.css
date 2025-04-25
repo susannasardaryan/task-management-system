@@ -22,3 +22,7 @@ button:hover{
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
+select:disabled, input:disabled, textarea:disabled{
+    cursor: not-allowed;
+}

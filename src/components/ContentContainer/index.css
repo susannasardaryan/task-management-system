@@ -1,8 +1,13 @@
 .content-container {
+    margin: 0;
     display: flex;
-    justify-content: center;
-    gap: 2.5rem;
+    justify-content: space-between;
     align-items: flex-start;
+    gap: 1.5rem;
 
+    height: 100%;
+    width: 100%;
+    scroll-behavior: smooth;
+    padding: 1rem;
 }
 

@@ -25,7 +25,7 @@ const TaskList = ({status, tasks, onAddButtonClick, onEditButtonClick}) => {
                 {tasks?.map((task) => (
                     <Task key={task.id} task={task} onEditButtonClick={onEditButtonClick}/>
                 ))}
-                <button className={"add-button"} onClick={() => onAddButtonClick(status)}>
+                <button className={"add-button"} onClick={() => onAddButtonClick(status)} hidden={status === 'blocked'}>
                     Add Task +
                 </button>
             </section>

@@ -53,7 +53,9 @@
 .actions button > img {
     width: 20px;
 }
-
+.actions button:disabled {
+    cursor: not-allowed;
+}
 .title {
     margin: 0.2rem auto;
 }

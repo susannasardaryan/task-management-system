@@ -38,7 +38,7 @@ export const USERS = [
     }
 ];
 
-export const STASUSES = ['todo', 'doing', 'done'];
+export const STASUSES = ['todo', 'doing', 'done', 'blocked'];
 
 export const LOCAL_STORAGE_KEY = 'task-management-tasks';
 

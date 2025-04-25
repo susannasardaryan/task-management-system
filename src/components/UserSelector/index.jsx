@@ -2,7 +2,7 @@ import {USERS} from '../../constants/consts.js';
 import {useState} from "react";
 import './index.css'
 
-const UserSelector = ({assignee, onHandleUserSelect}) => {
+const UserSelector = ({assignee, onHandleUserSelect, disabled}) => {
     const [isShowUserList, setShowUserList] = useState(false);
 
     const handleUserSelect = (user) => {
@@ -17,8 +17,9 @@ const UserSelector = ({assignee, onHandleUserSelect}) => {
                     placeholder={'Add Task Assignee'}
                     onClick={() => setShowUserList(true)}
                     required={true}
+                    disabled={disabled}
             />
-            <div className={'change-user-list'} style={{display: isShowUserList ? '' : 'none'}}>
+            <div className={'change-user-list'} hidden={!isShowUserList}>
                 {USERS.map((user) => <div key={user.id}
                                           className={'change-user-list-item'}
                                           onClick={() => handleUserSelect(user)}>

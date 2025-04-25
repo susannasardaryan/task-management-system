@@ -50,13 +50,13 @@ const EditModal = ({task, onModalClose}) => {
                 </div>
                 <label htmlFor="title">
                     Title
-                    <input className={"title-modal"} value={editedTask.title} onChange={handleInputChange}/>
+                    <input className={"title-modal"} value={editedTask.title} onChange={handleInputChange} disabled={task.status === 'blocked'}/>
                 </label>
                 <div className={"modal-body"}>
                     <label htmlFor="priority">
                         Priority
                         <select className={"select-modal priority-modal"} onChange={handlePriorityChange}
-                                id={'priority'} value={editedTask.priority}>
+                                id={'priority'} value={editedTask.priority} disabled={task.status === 'blocked'}>
                             {PRIORITIES.map((priority) => (
                                 <option key={priority}>{priority}</option>
                             ))}
@@ -76,10 +76,10 @@ const EditModal = ({task, onModalClose}) => {
                 <label htmlFor="">
                     Description
                     <textarea className={"description-modal"} value={editedTask.description}
-                              onChange={handleDescriptionChange}></textarea>
+                              onChange={handleDescriptionChange} disabled={task.status === 'blocked'}></textarea>
                 </label>
 
-                <UserSelector assignee={editedTask.assignee} onHandleUserSelect={handleUserSelect}/>
+                <UserSelector assignee={editedTask.assignee} onHandleUserSelect={handleUserSelect} disabled={task.status === 'blocked'}/>
 
                 <button onClick={handleSave} className="save-button">Save</button>
             </div>
