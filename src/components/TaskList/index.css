@@ -34,3 +34,8 @@
 .doing{
     border-top: 5px #5fd8de solid;
 }
+
+.task-list-edit{
+    float: right;
+    width: 20px;
+}

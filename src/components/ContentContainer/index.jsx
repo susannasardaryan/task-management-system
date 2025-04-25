@@ -1,24 +1,21 @@
-import {useContext, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import './index.css'
 import TaskList from "../TaskList/index.jsx";
 import {TaskManagerContext} from "../TaskManagerContext.jsx";
 import AddModal from "../AddModal/index.jsx";
 import EditModal from "../EditModal/index.jsx";
-import {LOCAL_STORAGE_KEY} from "../../constants/consts.js";
+import {LOCAL_STORAGE_KEY, STASUSES} from "../../constants/consts.js";
 
 const ContentContainer = () => {
     const {tasks} = useContext(TaskManagerContext);
     const [addModalStatus, setAddModalStatus] = useState(null);
     const [editModalTask, setEditModalTask] = useState(null);
+    // const [statuses, setStatuses] = useState(['todo', 'doing', 'done']);
 
     const handleAddModalChange = (status) => {
         setAddModalStatus((prev) => {
             if (!prev) return status
         });
-
-        if (!addModalStatus) {
-            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(tasks));
-        }
     };
     const handleEditModalChange = (task) => {
         setEditModalTask((prev) => {
@@ -26,21 +23,17 @@ const ContentContainer = () => {
         })
     };
 
+    useEffect(() => localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(tasks)), [tasks])
+
     return (
         <>
             <div className="content-container">
-                <TaskList status={'todo'} tasks={tasks.filter(task => task.status === 'todo')}
-                          onAddButtonClick={handleAddModalChange}
-                          onEditButtonClick={handleEditModalChange}
-                />
-                <TaskList status={'doing'} tasks={tasks.filter(task => task.status === 'doing')}
-                          onAddButtonClick={handleAddModalChange}
-                          onEditButtonClick={handleEditModalChange}
-                />
-                <TaskList status={'done'} tasks={tasks.filter(task => task.status === 'done')}
-                          onAddButtonClick={handleAddModalChange}
-                          onEditButtonClick={handleEditModalChange}
-                />
+                {STASUSES.map((status) => (
+                    <TaskList key={status} status={status} tasks={tasks.filter(task => task.status === status)}
+                              onAddButtonClick={handleAddModalChange}
+                              onEditButtonClick={handleEditModalChange}
+                    />
+                ))}
             </div>
 
             {!!addModalStatus && <AddModal onModalClose={handleAddModalChange} status={addModalStatus}/>}

@@ -1,10 +1,12 @@
 import {PRIORITIES, STASUSES, USERS} from "../../constants/consts.js";
 import {useContext, useState} from "react";
 import {TaskManagerContext} from "../TaskManagerContext.jsx";
+import UserSelector from "../UserSelector/index.jsx";
 
 const EditModal = ({task, onModalClose}) => {
     const {editTask} = useContext(TaskManagerContext);
     const [editedTask, setEditedTask] = useState(task);
+    const [showWarningMessage, setShowWarningMessage] = useState(false);
 
     const handleInputChange = (e) => {
         setEditedTask({...editedTask, title: e.target.value});
@@ -21,17 +23,29 @@ const EditModal = ({task, onModalClose}) => {
     const handleStatusChange = (e) => {
         setEditedTask({...editedTask, status: e.target.value});
     }
+
+    const handleUserSelect = (newUser) => {
+        setEditedTask({...editedTask, assignee: newUser});
+    }
+
     const handleSave = () => {
+        if (!editedTask.title) {
+            setShowWarningMessage(true);
+            setTimeout(() => setShowWarningMessage(false), 2000);
+            return;
+        }
+
         editTask(editedTask);
         onModalClose();
     };
 
-
     return (
         <div className={"modal"}>
             <div className="modal-container">
+                {showWarningMessage && <p className={'warning-message'}>Please fill all required fields</p>}
+
                 <div className="modal-header">
-                    Edit task
+                    <span>Edit task</span>
                     <button className="close" onClick={onModalClose}>✖</button>
                 </div>
                 <label htmlFor="title">
@@ -41,7 +55,8 @@ const EditModal = ({task, onModalClose}) => {
                 <div className={"modal-body"}>
                     <label htmlFor="priority">
                         Priority
-                        <select className={"select-modal priority-modal"} onChange={handlePriorityChange} id={'priority'} defaultValue={task.priority}>
+                        <select className={"select-modal priority-modal"} onChange={handlePriorityChange}
+                                id={'priority'} defaultValue={task.priority}>
                             {PRIORITIES.map((priority) => (
                                 <option key={priority}>{priority}</option>
                             ))}
@@ -49,9 +64,10 @@ const EditModal = ({task, onModalClose}) => {
                     </label>
                     <label>
                         Status
-                        <select className={"select-modal status-modal"} onChange={handleStatusChange} defaultValue={task.status}>
+                        <select className={"select-modal status-modal"} onChange={handleStatusChange}
+                                defaultValue={task.status}>
                             {STASUSES.map((status) => (
-                                <option>{status}</option>
+                                <option key={status}>{status}</option>
                             ))}
                         </select>
                     </label>
@@ -63,11 +79,8 @@ const EditModal = ({task, onModalClose}) => {
                               onChange={handleDescriptionChange}></textarea>
                 </label>
 
-                <select className={"users"}>
-                    {USERS.map((user) => (
-                        <option key={user}>{user}</option>
-                    ))}
-                </select>
+                <UserSelector assignee={editedTask.assignee} onHandleUserSelect={handleUserSelect}/>
+
                 <button onClick={handleSave} className="save-button">
                     Save
                 </button>

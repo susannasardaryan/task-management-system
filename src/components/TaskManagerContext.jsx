@@ -2,7 +2,7 @@ import {createContext, useReducer} from "react";
 import {LOCAL_STORAGE_KEY} from "../constants/consts.js";
 
 export const TaskManagerContext = createContext({
-    tasks: JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [],
+    tasks: [],
 });
 
 export const TaskManagerProvider = ({children}) => {
@@ -21,7 +21,7 @@ export const TaskManagerProvider = ({children}) => {
                 });
         }
     };
-    const [tasks, dispatch] = useReducer(reducer, []);
+    const [tasks, dispatch] = useReducer(reducer, JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || []);
 
     const addTask = (task) => {
         dispatch({
