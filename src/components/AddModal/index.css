@@ -95,7 +95,7 @@ select{
 
 .description-modal {
     width: 100%;
-    min-height: 100px;
+    min-height: 50px;
     margin-top: 8px;
     padding: 10px;
     font-size: 16px;
@@ -143,3 +143,4 @@ label {
     color: brown;
     text-align: left;
 }
+

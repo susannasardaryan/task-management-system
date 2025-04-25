@@ -1,13 +1,21 @@
 import "./index.css";
 import {useContext} from "react";
+import { useDrag } from 'react-dnd'
 import {TaskManagerContext} from "../TaskManagerContext.jsx";
 
 const Task = ({task, onEditButtonClick}) => {
     const {removeTask} = useContext(TaskManagerContext);
 
-    return (
+    const [collected, drag, dragPreview] = useDrag(() => ({
+        type: 'card',
+        item: task,
+    }))
+
+    return (collected.isDragging ? (
+                <div ref={dragPreview} />
+            ) :
         <>
-            <div className={"task"}>
+            <div className={"task"} ref={drag}>
                 <div className={"task-header"}>
                     <p className={`priority ${task.priority}`}>{task.priority} priority</p>
                     <div className="actions">

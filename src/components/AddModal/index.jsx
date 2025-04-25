@@ -1,5 +1,5 @@
 import "./index.css";
-import {PRIORITIES, DEFAULT_TASK} from "../../constants/consts";
+import {PRIORITIES, DEFAULT_TASK} from '../../constants/consts.js';
 import {useContext, useRef, useState} from "react";
 import {TaskManagerContext} from "../TaskManagerContext";
 import UserSelector from "../UserSelector/index.jsx";
@@ -22,7 +22,11 @@ const AddModal = ({onModalClose, status}) => {
     }
 
     const handleSave = () => {
-        if(!titleInputRef.current.value) {
+        const title = titleInputRef.current.value;
+        const description = descriptionRef.current.value;
+        const priority = prioritySelectRef.current.value;
+
+        if(!title) {
             titleInputRef.current.focus();
             setShowWarningMessage(true);
             setTimeout(() => setShowWarningMessage(false), 2000);
@@ -31,9 +35,9 @@ const AddModal = ({onModalClose, status}) => {
 
         task = {
             ...task,
-            title: titleInputRef.current.value,
-            description: descriptionRef.current.value,
-            priority: prioritySelectRef.current.value,
+            title,
+            description,
+            priority,
             assignee,
             status,
         };
@@ -55,7 +59,7 @@ const AddModal = ({onModalClose, status}) => {
                 </label>
                 <select className={"select-modal"} ref={prioritySelectRef}>
                     {PRIORITIES.map((priority) => (
-                        <option key={priority}>{priority}</option>
+                        <option key={priority} >{priority}</option>
                     ))}
                 </select>
 

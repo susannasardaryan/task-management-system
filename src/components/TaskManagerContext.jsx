@@ -1,5 +1,5 @@
 import {createContext, useReducer} from "react";
-import {LOCAL_STORAGE_KEY} from "../constants/consts.js";
+import {LOCAL_STORAGE_KEY} from '../constants/consts.js';
 
 export const TaskManagerContext = createContext({
     tasks: [],
@@ -16,7 +16,9 @@ export const TaskManagerProvider = ({children}) => {
                 return state.filter((task) => task.id !== payload.id);
             case "edit-task":
                 return state.map((task) => {
-                    if (task.id === payload.editedTask.id) return payload.editedTask;
+                    if (task.id === payload.editedTask.id) {
+                        return payload.editedTask;
+                    }
                     return task;
                 });
         }
@@ -43,6 +45,7 @@ export const TaskManagerProvider = ({children}) => {
             payload: {editedTask},
         });
     };
+
 
     return (
         <TaskManagerContext.Provider

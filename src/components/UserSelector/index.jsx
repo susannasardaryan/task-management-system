@@ -1,4 +1,4 @@
-import {USERS} from "../../constants/consts.js";
+import {USERS} from '../../constants/consts.js';
 import {useState} from "react";
 import './index.css'
 
@@ -12,7 +12,6 @@ const UserSelector = ({assignee, onHandleUserSelect}) => {
     return (
         <>
             <input  type={'text'}
-                    value={assignee.name}
                     defaultValue={assignee.name}
                     className={'user-assigned-input'}
                     placeholder={'Add Task Assignee'}

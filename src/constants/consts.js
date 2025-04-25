@@ -1,4 +1,4 @@
-export const PRIORITIES = ['high', 'medium', 'low'];
+export const PRIORITIES = ['low', 'medium', 'high'];
 
 export const USERS = [
     {
@@ -49,4 +49,4 @@ export const DEFAULT_TASK = {
     status: 'todo',
     priority: "low",
     assignee: {},
-  };
+};

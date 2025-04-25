@@ -1,4 +1,4 @@
-import {PRIORITIES, STASUSES, USERS} from "../../constants/consts.js";
+import {PRIORITIES, STASUSES} from '../../constants/consts.js';
 import {useContext, useState} from "react";
 import {TaskManagerContext} from "../TaskManagerContext.jsx";
 import UserSelector from "../UserSelector/index.jsx";
@@ -56,7 +56,7 @@ const EditModal = ({task, onModalClose}) => {
                     <label htmlFor="priority">
                         Priority
                         <select className={"select-modal priority-modal"} onChange={handlePriorityChange}
-                                id={'priority'} defaultValue={task.priority}>
+                                id={'priority'} value={editedTask.priority}>
                             {PRIORITIES.map((priority) => (
                                 <option key={priority}>{priority}</option>
                             ))}
@@ -65,7 +65,7 @@ const EditModal = ({task, onModalClose}) => {
                     <label>
                         Status
                         <select className={"select-modal status-modal"} onChange={handleStatusChange}
-                                defaultValue={task.status}>
+                                value={editedTask.status}>
                             {STASUSES.map((status) => (
                                 <option key={status}>{status}</option>
                             ))}
@@ -81,9 +81,7 @@ const EditModal = ({task, onModalClose}) => {
 
                 <UserSelector assignee={editedTask.assignee} onHandleUserSelect={handleUserSelect}/>
 
-                <button onClick={handleSave} className="save-button">
-                    Save
-                </button>
+                <button onClick={handleSave} className="save-button">Save</button>
             </div>
         </div>
 
