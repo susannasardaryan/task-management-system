@@ -11,7 +11,6 @@ const TaskList = ({status, tasks, onAddButtonClick, onEditButtonClick}) => {
     const [, drop] = useDrop(() => ({
         accept: 'card',
         drop: (item) => {
-            console.log({...item, status});
             editTask({...item, status})
         },
         collect: (monitor) => ({

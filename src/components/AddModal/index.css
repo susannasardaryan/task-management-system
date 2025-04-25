@@ -144,3 +144,11 @@ label {
     text-align: left;
 }
 
+option{
+    background-color: white;
+    color: #579186;
+
+}
+option:hover{
+    background-color: #f3f4f6;
+}

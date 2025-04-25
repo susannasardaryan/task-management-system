@@ -16,6 +16,7 @@ const ContentContainer = () => {
             if (!prev) return status
         });
     };
+
     const handleEditModalChange = (task) => {
         setEditModalTask((prev) => {
             if (!prev) return task
