@@ -1,31 +1,19 @@
-import {PRIORITIES, STASUSES} from '../../constants/consts.js';
-import {useContext, useState} from "react";
-import {TaskManagerContext} from "../TaskManagerContext.jsx";
+import { PRIORITIES, STASUSES } from '../../constants/consts.js';
+import { useContext, useState } from "react";
+import { TaskManagerContext } from "../TaskManagerContext.jsx";
 import UserSelector from "../UserSelector/index.jsx";
 
-const EditModal = ({task, onModalClose}) => {
-    const {editTask} = useContext(TaskManagerContext);
+const EditModal = ({ task, onModalClose }) => {
+    const { editTask } = useContext(TaskManagerContext);
     const [editedTask, setEditedTask] = useState(task);
     const [showWarningMessage, setShowWarningMessage] = useState(false);
 
-    const handleInputChange = (e) => {
-        setEditedTask({...editedTask, title: e.target.value});
+    const handleChange = (e, field) => {
+        setEditedTask({ ...editedTask, [field]: e.target.value });
     }
 
-    const handleDescriptionChange = (e) => {
-        setEditedTask({...editedTask, description: e.target.value});
-    }
-
-    const handlePriorityChange = (e) => {
-        setEditedTask({...editedTask, priority: e.target.value});
-    }
-
-    const handleStatusChange = (e) => {
-        setEditedTask({...editedTask, status: e.target.value});
-    }
-
-    const handleUserSelect = (newUser) => {
-        setEditedTask({...editedTask, assignee: newUser});
+    const handleUserSelect = (user) => {
+        setEditedTask((prev) => ({ ...prev, assignee: user }));
     }
 
     const handleSave = () => {
@@ -50,13 +38,13 @@ const EditModal = ({task, onModalClose}) => {
                 </div>
                 <label htmlFor="title">
                     Title
-                    <input className={"title-modal"} value={editedTask.title} onChange={handleInputChange} disabled={task.status === 'blocked'}/>
+                    <input className={"title-modal"} value={editedTask.title} onChange={(e) => handleChange(e, 'title')} disabled={task.status === 'blocked'} />
                 </label>
                 <div className={"modal-body"}>
                     <label htmlFor="priority">
                         Priority
-                        <select className={"select-modal priority-modal"} onChange={handlePriorityChange}
-                                id={'priority'} value={editedTask.priority} disabled={task.status === 'blocked'}>
+                        <select className={"select-modal priority-modal"} onChange={(e) => handleChange(e, 'priority')}
+                            id={'priority'} value={editedTask.priority} disabled={task.status === 'blocked'}>
                             {PRIORITIES.map((priority) => (
                                 <option key={priority}>{priority}</option>
                             ))}
@@ -64,8 +52,8 @@ const EditModal = ({task, onModalClose}) => {
                     </label>
                     <label>
                         Status
-                        <select className={"select-modal status-modal"} onChange={handleStatusChange}
-                                value={editedTask.status}>
+                        <select className={"select-modal status-modal"} onChange={(e) => handleChange(e, 'status')}
+                            value={editedTask.status}>
                             {STASUSES.map((status) => (
                                 <option key={status}>{status}</option>
                             ))}
@@ -76,10 +64,10 @@ const EditModal = ({task, onModalClose}) => {
                 <label htmlFor="">
                     Description
                     <textarea className={"description-modal"} value={editedTask.description}
-                              onChange={handleDescriptionChange} disabled={task.status === 'blocked'}></textarea>
+                        onChange={(e) => handleChange(e, 'description')} disabled={task.status === 'blocked'}></textarea>
                 </label>
 
-                <UserSelector assignee={editedTask.assignee} onHandleUserSelect={handleUserSelect} disabled={task.status === 'blocked'}/>
+                <UserSelector assignee={editedTask.assignee} onHandleUserSelect={handleUserSelect} disabled={task.status === 'blocked'} />
 
                 <button onClick={handleSave} className="save-button">Save</button>
             </div>
